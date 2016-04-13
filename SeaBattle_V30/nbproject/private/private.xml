@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/printTags/PrintUsedBattlefieldComputer.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/web/js/game.js</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/web/pages/winner.jsp</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/src/java/SeaBattle_V20/GamerInputAndOutput.java</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/src/java/servletController/ActionParser.java</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/src/java/printTags/PrintWinner.java</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/web/pages/game.jsp</file>
-            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/src/java/printTags/PrintUsedBattlefieldComputer.java</file>
+            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/SeaBattle_V30/web/pages/preparation_VS_computer.jsp</file>
+            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/SeaBattle_V30/src/java/printTags/PrintUsedBattlefieldGamer.java</file>
+            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/SeaBattle_V30/src/java/printTags/PrintUsedBattlefieldComputer.java</file>
+            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/SeaBattle_V30/web/js/game.js</file>
+            <file>file:/D:/IT/JAVA/NetBeans%20projects/SeaBattle_V30/SeaBattle_V30/web/js/preparation_VS_computer.js</file>
         </group>
     </open-files>
 </project-private>

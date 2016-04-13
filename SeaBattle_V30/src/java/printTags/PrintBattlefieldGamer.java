@@ -48,17 +48,15 @@ public class PrintBattlefieldGamer extends SimpleTagSupport {
         jspOut.println("<th>I</th>");
         jspOut.println("<th>J</th>");
         jspOut.println("</tr>");
-        if ( battlefieldGamer != null) {
+        if ( battlefieldGamer != null) {            
             for (int i = 1; i <= 10; i++) {
-                jspOut.println("<tr><td class = \"left-column\">" + i + "</td>");
+                jspOut.println("<tr><td class = \"left-column\">" + i + "</td>");                
                 for (int j = 65; j <= 74; j++){
                     valueOfCaseGamer = Character.toString((char) j) + i;                    
                     if (battlefieldGamer.get(valueOfCaseGamer) > 100) {
                         jspOut.println("<td class = \"yesShip\" id =" + valueOfCaseGamer + "></td>");
-                    } else if (battlefieldGamer.get(valueOfCaseGamer) < 100 & battlefieldGamer.get(valueOfCaseGamer) > 10) {
-                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "></td>");
-                    } else if (battlefieldGamer.get(valueOfCaseGamer) == 0 ) {
-                        jspOut.println("<td class = \"noLimit\" id =" + valueOfCaseGamer + "></td>");
+                    } else {
+                        jspOut.println("<td id =" + valueOfCaseGamer + "></td>");
                     }
                 }
                 jspOut.println("</tr>");
@@ -66,6 +64,7 @@ public class PrintBattlefieldGamer extends SimpleTagSupport {
         } else {
             jspOut.println("Error print");
         }
+        jspOut.println("</tr>");
         jspOut.println("</table>");
         
     }   

@@ -3,8 +3,6 @@ package org.apache.jsp.pages;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.Map;
-import SeaBattle_V20.PreparationGame;
 
 public final class gamerBattlefield_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,98 +42,15 @@ public final class gamerBattlefield_jsp extends org.apache.jasper.runtime.HttpJs
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<table>\n");
-      out.write("                <tr>\n");
-      out.write("                    <th>  </th>\n");
-      out.write("                    <th> A </th>\n");
-      out.write("                    <th> B </th>\n");
-      out.write("                    <th> C </th>\n");
-      out.write("                    <th> D </th>\n");
-      out.write("                    <th> E </th>\n");
-      out.write("                    <th> F </th>\n");
-      out.write("                    <th> G </th>\n");
-      out.write("                    <th> H </th>\n");
-      out.write("                    <th> I </th>\n");
-      out.write("                    <th> J </th>\n");
-      out.write("                </tr>\n");
-      out.write("                ");
- String valueOfCaseGamer; 
-      out.write("\n");
-      out.write("                ");
- try { 
-      out.write("\n");
-      out.write("                    ");
- Map<String, Integer> battlefieldGamer = PreparationGame.getBattlefieldGamer(); 
-      out.write("\n");
-      out.write("                    ");
- battlefieldGamer.get("A1"); 
-      out.write("\n");
-      out.write("                    ");
- for (int i = 1; i <= 10; i++) {
-      out.write("\n");
-      out.write("                        <tr><td class = \"left-column\"> ");
-      out.print( i);
-      out.write(" </td>\n");
-      out.write("                            ");
- for (int j = 65; j <= 74; j++) { 
-      out.write("                                                   \n");
-      out.write("                                ");
- valueOfCaseGamer = Character.toString((char) j) + i;
-      out.write("                                         \n");
-      out.write("                                ");
- if (battlefieldGamer.get(valueOfCaseGamer)>100){
-      out.write("\n");
-      out.write("                                    <td class=\"yesShip\" id = \" ");
-      out.print( "G" + valueOfCaseGamer );
-      out.write("\" ></td>                                            \n");
-      out.write("                                ");
- } else {
-      out.write("\n");
-      out.write("                                    <td id = \"");
-      out.print( "G" + valueOfCaseGamer );
-      out.write("\" > </td>\n");
-      out.write("                                ");
-}
-      out.write("                                            \n");
-      out.write("                            ");
-}
       out.write("  \n");
+      out.write("\n");
+      out.write("<script type=\"text/javascript\" src=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/js/game.js\"></script>\n");
+      out.write("\n");
+      if (_jspx_meth_ex_printUsedBattlefieldGamer_0(_jspx_page_context))
+        return;
       out.write("                    ");
-}
-      out.write("\n");
-      out.write("                ");
-} catch (NullPointerException e) {
-      out.write("\n");
-      out.write("                    ");
- System.out.println(e); 
-      out.write("\n");
-      out.write("                    ");
- for (int i = 1; i <= 10; i++) {
-      out.write("\n");
-      out.write("                        <tr><td class = \"left-column\"> ");
-      out.print( i);
-      out.write(" </td>\n");
-      out.write("                            ");
- for (int j = 65; j <= 74; j++) { 
-      out.write("                                                   \n");
-      out.write("                                ");
- valueOfCaseGamer = Character.toString((char) j) + i;
-      out.write("                                          \n");
-      out.write("                                    <td id = \"");
-      out.print( "G" + valueOfCaseGamer );
-      out.write("\" > </td>                                                                           \n");
-      out.write("                            ");
-}
-      out.write("\n");
-      out.write("                    ");
-}
-      out.write("                     \n");
-      out.write("                ");
-}
-      out.write("\n");
-      out.write("</table>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -147,5 +62,17 @@ public final class gamerBattlefield_jsp extends org.apache.jasper.runtime.HttpJs
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_ex_printUsedBattlefieldGamer_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  ex:printUsedBattlefieldGamer
+    printTags.PrintUsedBattlefieldGamer _jspx_th_ex_printUsedBattlefieldGamer_0 = (_jspx_resourceInjector != null) ? _jspx_resourceInjector.createTagHandlerInstance(printTags.PrintUsedBattlefieldGamer.class) : new printTags.PrintUsedBattlefieldGamer();
+    _jspx_th_ex_printUsedBattlefieldGamer_0.setJspContext(_jspx_page_context);
+    _jspx_th_ex_printUsedBattlefieldGamer_0.setUsedBattlefieldGamer((java.util.Map) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usedBattlefieldGamer}", java.util.Map.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_ex_printUsedBattlefieldGamer_0.doTag();
+    return false;
   }
 }

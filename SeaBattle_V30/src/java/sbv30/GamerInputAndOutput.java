@@ -7,7 +7,7 @@
  *  данного программного обеспечения -  Юшин Роман, начинающий Java программист (yushin.khpi@gmail.com).
  *  Данное программное обеспечение разработано с целью самообучения.
  */
-package SeaBattle_V20;
+package sbv30;
 
 import java.io.IOException;
 import java.util.Map;
@@ -90,6 +90,25 @@ public class GamerInputAndOutput {
      * все корабли будут потоплены будет выведено данное число на экран.
      */
     static int counter;
+    
+    /**
+     * boolean gamerHit - переменная, которая определяет попадание игрока.
+     * false - мимо, не попал, что означает передачу хода компьютеру
+     * true - попал, что означает продолжение стрельбы игроком
+     */
+    private static boolean gamerHit;
+
+    public static boolean isGamerHit() {
+        return gamerHit;
+    }
+
+    public static void setGamerHit(boolean gamerHit) {
+        GamerInputAndOutput.gamerHit = gamerHit;
+    }
+    
+    
+    
+    
 
     /**
      * gamerMove - основной метод для данного класса. В нем делает свой ход
@@ -119,8 +138,8 @@ public class GamerInputAndOutput {
         // добавляем новую координату в коллекцию "стреляных" координат.
         usedBattlefieldComp.put(id, valueOfBattlefieldComp);
 
-        System.out.println("valueOfBattlefieldComp  in  GamerInputAndOutput" + valueOfBattlefieldComp);
-        System.out.println("usedBattlefieldComp  in  GamerInputAndOutput" + usedBattlefieldComp);
+        //System.out.println("valueOfBattlefieldComp  in  GamerInputAndOutput" + valueOfBattlefieldComp);
+        //System.out.println("usedBattlefieldComp  in  GamerInputAndOutput" + usedBattlefieldComp);
 
         // ищем необходимое нам число, и соответствующий этому числу корабль.
         switch (valueOfBattlefieldComp) {
@@ -135,8 +154,9 @@ public class GamerInputAndOutput {
             case 35:
             case 36:
             case 45:
-                System.out.println("МИМО!");
+                System.out.println("Роман, МИМО!\n");
                 usedBattlefieldComp.put(id, 1);
+                gamerHit = false;
                 return usedBattlefieldComp;
             case 151:
             case 161:
@@ -162,6 +182,7 @@ public class GamerInputAndOutput {
                 }
                 usedBattlefieldComp = gamerDeck1SinkOrWound(usedBattlefieldComp, battlefieldComp, limitDeck1, serialNumberOfDeck1);
                 usedBattlefieldComp = getWinner(usedBattlefieldComp);
+                gamerHit = true;
                 return usedBattlefieldComp;
             case 251:
             case 252:
@@ -175,7 +196,7 @@ public class GamerInputAndOutput {
                         // Проверка потоплен ли корабль или подбит
                         if (usedBattlefieldComp.containsValue(251) && usedBattlefieldComp.containsValue(252)) {
                             // выводим сообщение на экран и
-                            System.out.println("ПОТОПЛЕН ДВУХПАЛУБНЫЙ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОТОПЛЕН ДВУХПАЛУБНЫЙ КОРАБЛЬ!\n");
                             //System.out.println("Выводим границы корабля: ");
                             // выводим границы корабля на экран
                             Deck2 deck2 = new Deck2(25, 1);
@@ -197,7 +218,7 @@ public class GamerInputAndOutput {
                             System.out.println("");
 
                         } else {
-                            System.out.println("ПОДБИТ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                             System.out.println("");
                         }
                         break;
@@ -207,7 +228,7 @@ public class GamerInputAndOutput {
                         serialNumberOfDeck2 = 2;*/
                         if (usedBattlefieldComp.containsValue(261) && usedBattlefieldComp.containsValue(262)) {
                             // выводим сообщение на экран и
-                            System.out.println("ПОТОПЛЕН ДВУХПАЛУБНЫЙ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОТОПЛЕН ДВУХПАЛУБНЫЙ КОРАБЛЬ!\n");
                             //System.out.println("Выводим границы корабля: ");
                             // выводим границы корабля на экран
                             Deck2 deck2 = new Deck2(26, 2);
@@ -229,7 +250,7 @@ public class GamerInputAndOutput {
                             System.out.println("");
 
                         } else {
-                            System.out.println("ПОДБИТ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                             System.out.println("");
                         }
                         break;
@@ -239,7 +260,7 @@ public class GamerInputAndOutput {
                         serialNumberOfDeck3 = 3;*/
                         if (usedBattlefieldComp.containsValue(271) && usedBattlefieldComp.containsValue(272)) {
                             // выводим сообщение на экран и
-                            System.out.println("ПОТОПЛЕН  ДВУХПАЛУБНЫЙ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОТОПЛЕН  ДВУХПАЛУБНЫЙ КОРАБЛЬ!\n");
                             //System.out.println("Выводим границы корабля: ");
                             // выводим границы корабля на экран
                             Deck2 deck2 = new Deck2(27, 3);
@@ -261,12 +282,13 @@ public class GamerInputAndOutput {
                             System.out.println("");
 
                         } else {
-                            System.out.println("ПОДБИТ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                             System.out.println("");
                         }
                         break;
                 }
                 usedBattlefieldComp = getWinner(usedBattlefieldComp);
+                gamerHit = true;
                 return usedBattlefieldComp;
             case 351:
             case 352:
@@ -282,7 +304,7 @@ public class GamerInputAndOutput {
                         serialNumberOfDeck3 = 1;*/
                         if (usedBattlefieldComp.containsValue(351) && usedBattlefieldComp.containsValue(352) && usedBattlefieldComp.containsValue(353)) {
                             // выводим сообщение на экран и записываем в
-                            System.out.println("ПОТОПЛЕН ТРЕХПАЛУБНЫЙ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОТОПЛЕН ТРЕХПАЛУБНЫЙ КОРАБЛЬ!\n");
                             //System.out.println("Выводим границы корабля: ");
                             // выводим границы корабля на экран
                             Deck3 deck3 = new Deck3(35, 1);
@@ -303,7 +325,7 @@ public class GamerInputAndOutput {
                             //System.out.println(usedBattlefieldComp.values());
                             System.out.println("");
                         } else {
-                            System.out.println("ПОДБИТ КОРАБЛЬ!");
+                            System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                             System.out.println("");
                         }
                         break;
@@ -314,7 +336,7 @@ public class GamerInputAndOutput {
                         serialNumberOfDeck3 = 2;*/
                         if (usedBattlefieldComp.containsValue(361) && usedBattlefieldComp.containsValue(362) && usedBattlefieldComp.containsValue(363)) {
                             // выводим сообщение на экран и записываем в
-                            System.out.println("ПОТОПЛЕН ТРЕХПАЛУБНЫЙ КОРАБЛЬ №2!");
+                            System.out.println("РОМАН, ПОТОПЛЕН ТРЕХПАЛУБНЫЙ КОРАБЛЬ №2!\n");
                             //System.out.println("Выводим границы корабля: ");
                             // выводим границы корабля на экран
                             Deck3 deck3 = new Deck3(36, 2);
@@ -333,24 +355,25 @@ public class GamerInputAndOutput {
                             }
                             */
                             //System.out.println(usedBattlefieldComp.values());
-                            System.out.println("");
+                            //System.out.println("");
                         } else {
-                            System.out.println("ПОДБИТ КОРАБЛЬ!");
-                            System.out.println("");
+                            System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                         }
                         break;
                 }
                 usedBattlefieldComp = getWinner(usedBattlefieldComp);
+                gamerHit = true;
                 return usedBattlefieldComp;
             case 451:
             case 452:
             case 453:
             case 454:
-                /*limitDeck4 = 45;*/
-                if (usedBattlefieldComp.containsValue(451) && usedBattlefieldComp.containsValue(452) && usedBattlefieldComp.containsValue(453) && usedBattlefieldComp.containsValue(454)) {
-                    // выводим сообщение на экран и
+                if (usedBattlefieldComp.containsValue(451) 
+                        && usedBattlefieldComp.containsValue(452)
+                        && usedBattlefieldComp.containsValue(453) 
+                        && usedBattlefieldComp.containsValue(454)) {
 
-                    System.out.println("ПОТОПЛЕН ЧЕТЫРЕХПАЛУБНЫЙ КОРАБЛЬ!");
+                    System.out.println("РОМАН, ПОТОПЛЕН ЧЕТЫРЕХПАЛУБНЫЙ КОРАБЛЬ!\n");
                     //System.out.println("Выводим границы корабля: ");
                     // выводим границы корабля на экран
                     Deck4 deck4 = new Deck4(45);
@@ -369,17 +392,17 @@ public class GamerInputAndOutput {
                     }
                     */
                     //System.out.println(usedBattlefieldComp.values());
-                    System.out.println("");
+                    //System.out.println("");
 
                 } else {
-                    System.out.println("ПОДБИТ КОРАБЛЬ!");
-                    System.out.println("");
+                    System.out.println("РОМАН, ПОДБИТ КОРАБЛЬ!\n");
                 }
                 //gamerMove(battlefieldGamer, battlefieldComp, usedBattlefieldGamer, usedBattlefieldComp, compInputWound);
                 usedBattlefieldComp = getWinner(usedBattlefieldComp);
+                gamerHit = true;
                 return usedBattlefieldComp;
             default:
-                return usedBattlefieldComp;
+                return usedBattlefieldComp;                
         } // выход из switch (valueOfBattlefielComp)
     } // выход из метода gamerMove
 
@@ -404,7 +427,7 @@ public class GamerInputAndOutput {
     public static Map gamerDeck1SinkOrWound(Map usedBattlefieldComp, Map battlefieldComp, int limitDeck1, int serialNumberOfDeck1) {
 
         // выводим сообщение на экран
-        System.out.println("ПОТОПЛЕН ОДНОПАЛУБНЫЙ КОРАБЛЬ!");
+        System.out.println("РОМАН, ПОТОПЛЕН ОДНОПАЛУБНЫЙ КОРАБЛЬ!\n");
         //System.out.println("Выводим границы корабля: ");
         // выводим границы корабля на экран
         Deck1 deck1 = new Deck1(limitDeck1, serialNumberOfDeck1);
@@ -424,7 +447,7 @@ public class GamerInputAndOutput {
         return usedBattlefieldComp;
     }
 
-    public static Map<String, Integer> getWinner(Map<String, Integer> usedBattlefieldComp) {
+    private static Map<String, Integer> getWinner(Map<String, Integer> usedBattlefieldComp) {
 
         // проверка, победил ли игрок или нет
         if (usedBattlefieldComp.containsValue(151)

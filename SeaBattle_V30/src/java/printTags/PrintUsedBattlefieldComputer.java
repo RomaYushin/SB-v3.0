@@ -10,6 +10,9 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+import sbv30.GamerInputAndOutput;
+import sbv30.PreparationComputer;
+import sbv30.PreparationGamer;
 
 /**
  *
@@ -31,9 +34,29 @@ public class PrintUsedBattlefieldComputer extends SimpleTagSupport {
     @Override
     public void doTag() throws JspException, IOException {
         String valueOfCaseGamer = null;
+        boolean hit = GamerInputAndOutput.isGamerHit();
+        System.out.println(" hit in PrintUsedBattlefieldComputer" + hit);
+        
+        //System.out.println("usedBattlefieldComp  from class  PrintUsedBattlefieldComputer:    " + usedBattlefieldComp);
+        
         JspWriter jspOut = getJspContext().getOut();        
         //System.out.println("usedBattlefieldComp:   " + usedBattlefieldComp);        
      
+        /*
+        if (hit) {
+            jspOut.println("<table id=\"isGamerHitTrue\">");
+        } else {
+            jspOut.println("<table id=\"isGamerHitFalse\">");
+        }
+        */
+        
+        if (hit) {
+            jspOut.println("<div id = \"nextMoveCG\" name = \"gamer\">");
+        } else {
+            jspOut.println("<div id = \"nextMoveCG\" name = \"comp\">");
+        }
+        jspOut.println("</div>");
+        
         jspOut.println("<table>");
         jspOut.println("<tr>");
         jspOut.println("<th></th>");

@@ -28,19 +28,19 @@
       <name>usedBattlefieldComp</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <type>SeaBattle_V20.PreparationGame</type>
+      <type>sbv30.PreparationGame</type>
     </attribute>
   </tag>
   
   <tag>
-    <name>printUsedGamerBattlefield</name>
-    <tag-class>printTags.PrintUsedGamerBattlefield</tag-class>
+    <name>printUsedBattlefieldGamer</name>
+    <tag-class>printTags.PrintUsedBattlefieldGamer</tag-class>
     <body-content>empty</body-content>
     <attribute>
       <name>usedBattlefieldGamer</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <type>SeaBattle_V20.PreparationGame</type>
+      <type>sbv30.PreparationGame</type>
     </attribute>
   </tag>
   
@@ -52,7 +52,7 @@
       <name>battlefieldGamer</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <type>SeaBattle_V20.PreparationGame</type>
+      <type>sbv30.PreparationGame</type>
     </attribute>
   </tag>
   
@@ -64,7 +64,20 @@
       <name>usedBattlefieldComp</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
-      <type>SeaBattle_V20.PreparationGame</type>
+      <type>sbv30.PreparationGame</type>
     </attribute>
   </tag>
+  
+    <tag>
+    <name>printGamerMove</name>
+    <tag-class>printTags.PrintGamerMove</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>isGamerHit</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>sbv30.PreparationGame</type>
+    </attribute>
+  </tag>
+  
 </taglib>

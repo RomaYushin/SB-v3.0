@@ -8,7 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 
-<%@page import="SeaBattle_V20.PreparationGame"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.lang.String"%>
@@ -24,7 +23,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/game.js"></script>
-        
+
 
     </head>
     <body>
@@ -41,18 +40,20 @@
                 </div>	
             </div>
 
-            <div id="Battlefield">
+            <div id="Battlefield">                
                 <div id="GamerBattlefield">	
-                    <ex:printBattlefieldGamer battlefieldGamer = "${battlefieldGamer}"/>
-                </div>	
-
+                    <ex:printUsedBattlefieldGamer usedBattlefieldGamer = "${usedBattlefieldGamer}"/>
+                </div> 	
+                
                 <div id="ComputerBattlefield">             
                     <ex:printUsedBattlefieldComputer usedBattlefieldComp = "${usedBattlefieldComp}"/>                    
-                </div>			
-                <div id="GamerMove"> GamerMove    
+                </div>
 
-                </div>				
-                <div id="ComputerMove"> ComputerMove </div>										
+                <div id="GamerMove"> GamerMove
+                </div>
+
+                <div id="ComputerMove"> ComputerMove
+                </div>										
             </div>
 
             <div id="footer" >

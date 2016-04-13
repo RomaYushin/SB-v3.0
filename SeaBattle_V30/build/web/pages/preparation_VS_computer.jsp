@@ -12,33 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> SEA BATTLE V3.0 </title>
         <link href="${pageContext.request.contextPath}/css/SeaBattle_V30_preparationGame.css" type="text/css" rel="stylesheet">
-        <script src="${pageContext.request.contextPath}/js/SeaBattle_V30_preparationGame_JS.js" type="text/javascript"></script>
+       
         <script src="${pageContext.request.contextPath}/js/jquery.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/preparation_VS_computer.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         
-        <!--
-        <script>
-        $(document).ready( function() {                    
-                    $('#btn2').click (function() {                    
-                    var data = "&action=ARRANGE_SHIPS_RANDOMLY";
-                    $.ajax({
-                        type: "GET",
-                        url: "${pageContext.request.contextPath}/ControllerServlet",
-                        data: data,
-                        success: function(response) {
-                            alert(response);
-                            //$("#Battlefield").html(response);
-                        }
-                    });
-
-                });
-            
-            });
-        </script>
-        -->
         
     </head>
     <body>
@@ -81,11 +62,8 @@
                 <div id="Ships">
                 </div>
 
-                <div id="Battlefield">
-                    
-                        <ex:printBattlefieldGamer battlefieldGamer = "${battlefieldGamer}"/>
-                    
-                                                          
+                <div id="Battlefield">                    
+                        <ex:printBattlefieldGamer battlefieldGamer = "${battlefieldGamer}"/>                                                    
                 </div>
             </div>
     </body>

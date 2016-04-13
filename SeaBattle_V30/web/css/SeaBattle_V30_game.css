@@ -107,7 +107,7 @@ tr {
 td , th{
     border: 3px solid;	
     width: 5%;
-    padding: 1%;
+    /*padding: 1%;*/
     background: rgba(169,169,169,0.5);
 }
 

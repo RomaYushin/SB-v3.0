@@ -3,7 +3,6 @@ package org.apache.jsp.pages;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import SeaBattle_V20.PreparationGame;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.String;
@@ -63,7 +62,6 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -77,7 +75,7 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/js/game.js\"></script>\n");
-      out.write("        \n");
+      out.write("\n");
       out.write("\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
@@ -97,24 +95,26 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\t\n");
       out.write("            </div>\n");
       out.write("\n");
-      out.write("            <div id=\"Battlefield\">\n");
+      out.write("            <div id=\"Battlefield\">                \n");
       out.write("                <div id=\"GamerBattlefield\">\t\n");
       out.write("                    ");
-      if (_jspx_meth_ex_printBattlefieldGamer_0(_jspx_page_context))
+      if (_jspx_meth_ex_printUsedBattlefieldGamer_0(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("                </div>\t\n");
-      out.write("\n");
+      out.write("                </div> \t\n");
+      out.write("                \n");
       out.write("                <div id=\"ComputerBattlefield\">             \n");
       out.write("                    ");
       if (_jspx_meth_ex_printUsedBattlefieldComputer_0(_jspx_page_context))
         return;
       out.write("                    \n");
-      out.write("                </div>\t\t\t\n");
-      out.write("                <div id=\"GamerMove\"> GamerMove    \n");
+      out.write("                </div>\n");
       out.write("\n");
-      out.write("                </div>\t\t\t\t\n");
-      out.write("                <div id=\"ComputerMove\"> ComputerMove </div>\t\t\t\t\t\t\t\t\t\t\n");
+      out.write("                <div id=\"GamerMove\"> GamerMove\n");
+      out.write("                </div>\n");
+      out.write("\n");
+      out.write("                <div id=\"ComputerMove\"> ComputerMove\n");
+      out.write("                </div>\t\t\t\t\t\t\t\t\t\t\n");
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <div id=\"footer\" >\n");
@@ -149,15 +149,15 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_ex_printBattlefieldGamer_0(PageContext _jspx_page_context)
+  private boolean _jspx_meth_ex_printUsedBattlefieldGamer_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
-    //  ex:printBattlefieldGamer
-    printTags.PrintBattlefieldGamer _jspx_th_ex_printBattlefieldGamer_0 = (_jspx_resourceInjector != null) ? _jspx_resourceInjector.createTagHandlerInstance(printTags.PrintBattlefieldGamer.class) : new printTags.PrintBattlefieldGamer();
-    _jspx_th_ex_printBattlefieldGamer_0.setJspContext(_jspx_page_context);
-    _jspx_th_ex_printBattlefieldGamer_0.setBattlefieldGamer((java.util.Map) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${battlefieldGamer}", java.util.Map.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_ex_printBattlefieldGamer_0.doTag();
+    //  ex:printUsedBattlefieldGamer
+    printTags.PrintUsedBattlefieldGamer _jspx_th_ex_printUsedBattlefieldGamer_0 = (_jspx_resourceInjector != null) ? _jspx_resourceInjector.createTagHandlerInstance(printTags.PrintUsedBattlefieldGamer.class) : new printTags.PrintUsedBattlefieldGamer();
+    _jspx_th_ex_printUsedBattlefieldGamer_0.setJspContext(_jspx_page_context);
+    _jspx_th_ex_printUsedBattlefieldGamer_0.setUsedBattlefieldGamer((java.util.Map) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usedBattlefieldGamer}", java.util.Map.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_ex_printUsedBattlefieldGamer_0.doTag();
     return false;
   }
 

@@ -1,4 +1,4 @@
-package SeaBattle_V20;
+package sbv30;
 
 public class Ships { //implements IShips {
 

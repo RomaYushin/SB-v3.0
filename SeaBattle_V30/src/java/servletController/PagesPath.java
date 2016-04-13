@@ -18,8 +18,10 @@ public class PagesPath {
     public static final String ARRANGE_SHIPS_RANDOMLY = "/pages/preparation_VS_computer.jsp";
     
     public static final String GAME = "/pages/game.jsp";   
-    public static final String GAMER_MOVE = "/pages/game.jsp";
+    //public static final String GAMER_MOVE = "/pages/game.jsp";
+    //public static final String COMP_MOVE = "/pages/";
     public static final String COMPUTER_BATTLEFIELD = "/pages/computerBattlefield.jsp";
+    public static final String GAMER_BATTLEFIELD = "/pages/gamerBattlefield.jsp";
     
     public static final String ERROR = "/pages/error.jsp";
     
