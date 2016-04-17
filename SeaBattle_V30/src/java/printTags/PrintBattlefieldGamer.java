@@ -34,7 +34,7 @@ public class PrintBattlefieldGamer extends SimpleTagSupport {
         //System.out.println("battlefieldGamer:   " + battlefieldGamer);
         JspWriter jspOut = getJspContext().getOut();
         
-        jspOut.println("<table>");
+        jspOut.println("<table id = \"GamerBattlefieldTable\">");
         jspOut.println("<tr>");
         jspOut.println("<th></th>");
         jspOut.println("<th>A</th>");

@@ -733,8 +733,8 @@ public class Deck4 extends Ships {
                         //        + " " + _9LimitCoordVer + " " + _10LimitCoordVer + " " + _11LimitCoordVer);
 
                         break;
-                    case 2:
-                        leftLimitNumberForLetterVer = randomNumberForLetterVer - 1;
+                    case 2:                        
+                        leftLimitNumberForLetterVer = ((int) battlefield.get("randomNumberForLetter_4deck")) - 1;
                         bottomLimitNumberVer = ((int) battlefield.get("fourthRandomNumberForNumber_4deck")) + 1;
 
                         _1LimitCoordVer = Character.toString((char) randomNumberForLetterVer) + bottomLimitNumberVer;
@@ -751,8 +751,8 @@ public class Deck4 extends Ships {
                         battlefield.replace(_5LimitCoordVer, battlefield.get(_5LimitCoordVer), limitDeck4);
                         battlefield.replace(_6LimitCoordVer, battlefield.get(_6LimitCoordVer), limitDeck4);
 
-                        //System.out.println(_1LimitCoordVer + " " + _2LimitCoordVer + " " + _3LimitCoordVer + " " + " " + _4LimitCoordVer
-                        //        + " " + _5LimitCoordVer + " " + _6LimitCoordVer);
+                        /*System.out.println(_1LimitCoordVer + " " + _2LimitCoordVer + " " + _3LimitCoordVer + " " + " " + _4LimitCoordVer
+                                + " " + _5LimitCoordVer + " " + _6LimitCoordVer);*/
 
                         break;
                     case 3:

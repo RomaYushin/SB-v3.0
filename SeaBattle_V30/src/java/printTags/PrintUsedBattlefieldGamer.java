@@ -42,7 +42,8 @@ public class PrintUsedBattlefieldGamer extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         String valueOfCaseGamer = null;
         boolean hit = CompInputAndOutput.isCompHit();
-        System.out.println(" hit in PrintUsedBattlefieldGamer" + hit);
+        boolean winner = CompInputAndOutput.isWinner();
+        //System.out.println(" winner  in PrintUsedBattlefieldGamer" + winner );
         battlefieldGamer = PreparationGamer.getBattlefieldGamer();
 
         //System.out.println("battlefieldGamer  from class  PrintUsedBattlefieldGamer:    " + battlefieldGamer);
@@ -65,7 +66,13 @@ public class PrintUsedBattlefieldGamer extends SimpleTagSupport {
         }
         jspOut.println("</div>");
         
-        jspOut.println("<table>");
+        if (winner) {
+            jspOut.println("<table id = \"compWin\">");
+        } else {
+            jspOut.println("<table>");
+        }
+        
+        //jspOut.println("<table>");
         jspOut.println("<tr>");
         jspOut.println("<th></th>");
         jspOut.println("<th>A</th>");
@@ -100,7 +107,7 @@ public class PrintUsedBattlefieldGamer extends SimpleTagSupport {
                     } else if (usedBattlefieldGamer.get(valueOfCaseGamer) < 100 && usedBattlefieldGamer.get(valueOfCaseGamer) > 10) {
                         jspOut.println("<td class = \"yesLimit\"id =" + valueOfCaseGamer + "><img src=\"images/point_7x7.png\"></td>");
                     } else if (usedBattlefieldGamer.get(valueOfCaseGamer) == 1) {
-                        jspOut.println("<td id =" + valueOfCaseGamer + "><img src=\"images/point_7x7.png\"></td>");
+                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "><img src=\"images/point_7x7.png\"></td>");
                     }
                 }                
             }

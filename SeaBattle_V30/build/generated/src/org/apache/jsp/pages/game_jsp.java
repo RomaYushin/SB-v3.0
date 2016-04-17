@@ -74,24 +74,35 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script type=\"text/javascript\" src=\"http://code.jquery.com/ui/1.11.2/jquery-ui.js\"></script>\n");
       out.write("        <script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/js/game.js\"></script>\n");
+      out.write("/js/game2.js\"></script>\n");
       out.write("\n");
       out.write("\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
+      out.write("    <body >\n");
       out.write("        <div id=\"wrapper\">\n");
       out.write("            <div id=\"header\"> SEA BATTLE </div>\t\t\t\n");
       out.write("            <div id=\"Inf\">\n");
-      out.write("                <div id=\"GamerInf\"> GamerInf\n");
-      out.write("\n");
-      out.write("                </div>\t\t\t\t\n");
+      out.write("                <div id=\"GamerInf\"> GamerInf </div>\t\t\t\t\n");
       out.write("                <div id=\"ComputerInf\"> ComputerInf </div>\t\n");
-      out.write("                <div id=\"PictureInf\"> \n");
-      out.write("                    <!-- PictureInf -->\n");
-      out.write("                    ");
-      if (_jspx_meth_ex_printWinner_0(_jspx_page_context))
-        return;
+      out.write("                <div id=\"PictureInf\">                     \n");
+      out.write("                    <div id = \"showGamerWin\">\n");
+      out.write("                        <p> TRIUMPH !!!         </br>\n");
+      out.write("                            YOU ARE WINNER!!!   </br>\n");
+      out.write("                        </p>\n");
+      out.write("                    </div>\n");
       out.write("\n");
+      out.write("                    <div id = \"showComputerWin\">\n");
+      out.write("                        <p> COMPUTER WIN!!!    </br>\n");
+      out.write("                            YOU ARE LOSER !!!   </br>\n");
+      out.write("                        </p>\n");
+      out.write("                    </div> \n");
+      out.write("                    \n");
+      out.write("                    <div id = \"showAlreadyShoot\">\n");
+      out.write("                        <p> YOU HAVE ALREADY SHOOT </br>\n");
+      out.write("                            ON THIS COORDINATE!!! </br>\n");
+      out.write("                            TRY AGAIN </br>\n");
+      out.write("                        </p>\n");
+      out.write("                    </div>  \n");
       out.write("                </div>\t\n");
       out.write("            </div>\n");
       out.write("\n");
@@ -102,7 +113,7 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("\n");
       out.write("                </div> \t\n");
-      out.write("                \n");
+      out.write("\n");
       out.write("                <div id=\"ComputerBattlefield\">             \n");
       out.write("                    ");
       if (_jspx_meth_ex_printUsedBattlefieldComputer_0(_jspx_page_context))
@@ -110,16 +121,38 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    \n");
       out.write("                </div>\n");
       out.write("\n");
-      out.write("                <div id=\"GamerMove\"> GamerMove\n");
+      out.write("                <div id=\"GamerMove\"> \n");
+      out.write("                    <!-- GamerMove -->\n");
+      out.write("                    <img src = \"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/images/greenTriangle_150x150.png\">\n");
       out.write("                </div>\n");
       out.write("\n");
-      out.write("                <div id=\"ComputerMove\"> ComputerMove\n");
+      out.write("                <div id=\"ComputerMove\"> \n");
+      out.write("                    <!-- ComputerMove -->\n");
+      out.write("                    <img src = \"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/images/redTriangle_150x150.png\">\n");
       out.write("                </div>\t\t\t\t\t\t\t\t\t\t\n");
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <div id=\"footer\" >\n");
-      out.write("                <div id=\"GamerFooter\"> MY FLEET! </div>\t\t\t\t\n");
-      out.write("                <div id=\"ComputerFooter\"> COMPUTER FLEET! </div>\n");
+      out.write("                <div id=\"GamerFooter\"> MY FLEET </div>\n");
+      out.write("                <div id=\"ComputerFooter\"> COMPUTER FLEET </div>\n");
+      out.write("                <div id=\"EndGameFooter\">\n");
+      out.write("                    <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/ControllerServlet?action=PREPARATION_VS_COMPUTER\">\n");
+      out.write("                        <button id=\"btn1\"> \n");
+      out.write("                            NEW GAME \n");
+      out.write("                        </button></a>\n");
+      out.write("                    <a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/ControllerServlet?action=INDEX\">\n");
+      out.write("                        <button id=\"btn2\"> \n");
+      out.write("                            EXIT  \n");
+      out.write("                        </button></a>\n");
+      out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
@@ -135,18 +168,6 @@ public final class game_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
-  }
-
-  private boolean _jspx_meth_ex_printWinner_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  ex:printWinner
-    printTags.PrintWinner _jspx_th_ex_printWinner_0 = (_jspx_resourceInjector != null) ? _jspx_resourceInjector.createTagHandlerInstance(printTags.PrintWinner.class) : new printTags.PrintWinner();
-    _jspx_th_ex_printWinner_0.setJspContext(_jspx_page_context);
-    _jspx_th_ex_printWinner_0.setUsedBattlefieldComp((java.util.Map) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${usedBattlefieldComp}", java.util.Map.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_ex_printWinner_0.doTag();
-    return false;
   }
 
   private boolean _jspx_meth_ex_printUsedBattlefieldGamer_0(PageContext _jspx_page_context)

@@ -62,8 +62,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div id=\"GamerVSComputer\">\n");
       out.write("                <a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/ControllerServlet?action=PREPARATION_VS_COMPUTER\" id=\"a1\" >\n");
-      out.write("                    <button name=\"GamerVSComputerButton\" value=\"GamerVSComputerValue\" id=\"btn1\"> \n");
+      out.write("/ControllerServlet?action=PREPARATION_VS_COMPUTER\">\n");
+      out.write("                    <button id=\"btn1\"> \n");
       out.write("                        Gamer VS Computer \n");
       out.write("                    </button>\n");
       out.write("                </a>\n");
@@ -72,8 +72,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div id=\"Gamer1VSGamer2\">\t\t\t\n");
       out.write("                <a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/ControllerServlet?action=PREPARATION_VS_SECOND_GAMER\" id=\"a2\">\n");
-      out.write("                    <button name=\"Gamer1VSGamer2Button\" value=\"Gamer1VSGamer2Value\" disabled id=\"btn2\">\n");
+      out.write("/ControllerServlet?action=PREPARATION_VS_SECOND_GAMER\">\n");
+      out.write("                    <button disabled id=\"btn2\">\n");
       out.write("                        Gamer1 VS Gamer2 \n");
       out.write("                    </button>\n");
       out.write("                </a>\t\t\t\t\n");

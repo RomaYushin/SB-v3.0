@@ -19,16 +19,16 @@
             </div>
 
             <div id="GamerVSComputer">
-                <a href="${pageContext.request.contextPath}/ControllerServlet?action=PREPARATION_VS_COMPUTER" id="a1" >
-                    <button name="GamerVSComputerButton" value="GamerVSComputerValue" id="btn1"> 
+                <a href="${pageContext.request.contextPath}/ControllerServlet?action=PREPARATION_VS_COMPUTER">
+                    <button id="btn1"> 
                         Gamer VS Computer 
                     </button>
                 </a>
             </div>
 
             <div id="Gamer1VSGamer2">			
-                <a href="${pageContext.request.contextPath}/ControllerServlet?action=PREPARATION_VS_SECOND_GAMER" id="a2">
-                    <button name="Gamer1VSGamer2Button" value="Gamer1VSGamer2Value" disabled id="btn2">
+                <a href="${pageContext.request.contextPath}/ControllerServlet?action=PREPARATION_VS_SECOND_GAMER">
+                    <button disabled id="btn2">
                         Gamer1 VS Gamer2 
                     </button>
                 </a>				

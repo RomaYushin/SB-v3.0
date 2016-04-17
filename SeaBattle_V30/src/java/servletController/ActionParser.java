@@ -40,47 +40,62 @@ public class ActionParser {
         switch (action) {
             case "INDEX":                
                 return PagesPath.INDEX;
-            case "PREPARATION_VS_COMPUTER":     
+            case "PREPARATION_VS_COMPUTER":          
+                // создание пустого поля игрока
                 battlefieldGamer = PreparationGamer.getBattlefieldGamer();
                 battlefieldGamer = EmptyBattlefield.createOfBattlefield(battlefieldGamer);
                 request.setAttribute("battlefieldGamer", battlefieldGamer);
-                //request.setAttribute("pc", 1);
+                
+                //создание пустого поля компьютера
+                battlefieldComp = PreparationComputer.getBattlefieldComp();
+                battlefieldComp = EmptyBattlefield.createOfBattlefield(battlefieldComp);
+                request.setAttribute("battlefieldComp", battlefieldComp);
+                
+                // возвращаем страничку preparation_VS_computer.jsp
                 return PagesPath.PREPARATION_VS_COMPUTER;
-            case "PREPARATION_VS_SECOND_GAMER":                
+                
+            case "PREPARATION_VS_SECOND_GAMER":    
+                // Данного фукционала в версии 3.0 не существует
                 return PagesPath.PREPARATION_VS_SECOND_GAMER;
+                
             case "ARRANGE_SHIPS_RANDOMLY": 
                 // подготовка игрока
                 battlefieldGamer = PreparationGamer.preparationBattlefieldGamer(battlefieldGamer);
                 GamerInputAndOutput.setGamerHit(true);
                 request.setAttribute("battlefieldGamer", battlefieldGamer);  
-                //System.out.println("battlefieldGamer" + battlefieldGamer);
                 
                 usedBattlefieldGamer = PreparationGamer.getUsedBattlefieldGamer();
                 usedBattlefieldGamer = EmptyBattlefield.createOfBattlefield(usedBattlefieldGamer);    
-                request.setAttribute("usedBattlefieldGamer", usedBattlefieldGamer);      
-                //System.out.println("usedBattlefieldGamer" + usedBattlefieldGamer);  
+                request.setAttribute("usedBattlefieldGamer", usedBattlefieldGamer);
                 
-                // подготовка компьютера
-                battlefieldComp = PreparationComputer.getBattlefieldComp();
-                battlefieldComp = EmptyBattlefield.createOfBattlefield(battlefieldComp);     
-                battlefieldComp = PreparationComputer.preparationBattlefieldComp(battlefieldComp);
-                request.setAttribute("battlefieldComp", battlefieldComp);
-                //System.out.println("battlefieldComp" + battlefieldComp);  
-                
+                // устанавливаем, что победитель не определен
+                GamerInputAndOutput.setWinner(false);
+         
+                // подготовка компьютера                     
+                battlefieldComp = PreparationComputer.preparationBattlefieldComp(battlefieldComp);          
                 usedBattlefieldComp = PreparationComputer.getUsedBattlefieldComp();
                 usedBattlefieldComp = EmptyBattlefield.createOfBattlefield(usedBattlefieldComp);
                 request.setAttribute("usedBattlefieldComp", usedBattlefieldComp);
-                //System.out.println("usedBattlefieldComp" + usedBattlefieldComp);  
                 
-                return PagesPath.ARRANGE_SHIPS_RANDOMLY;                
+                // удаляем содержимое коллекции сompInputWound
+                CompInputAndOutput2.clearCompInputWound();
+                
+                // устанавливаем, что победитель не определен
+                CompInputAndOutput.setWinner(false);
+                
+                // возвращаем страничку preparation_VS_computer.jsp
+                return PagesPath.ARRANGE_SHIPS_RANDOMLY;  
+                
             case "GAME":
-                
+                // добавляем коллекции в атрибуты сервлета
                 request.setAttribute("battlefieldGamer", battlefieldGamer);
                 request.setAttribute("usedBattlefieldGamer", usedBattlefieldGamer);
                 request.setAttribute("battlefieldComp", battlefieldComp);
                 request.setAttribute("usedBattlefieldComp", usedBattlefieldComp);
                 
+                // возвращаем страничку game.jsp
                 return PagesPath.GAME;
+                
             case "GAMER_MOVE":
                 String id = request.getParameter("id");
                 System.out.println("Роман сделал свой ход (id):  " + id);                
@@ -89,10 +104,10 @@ public class ActionParser {
                 request.setAttribute("usedBattlefieldComp", usedBattlefieldComp);
                 return PagesPath.COMPUTER_BATTLEFIELD;
             case "COMP_MOVE":
-                System.out.println("Компьютер собиратеся сделать свой ход. (actionParser)");
+                //System.out.println("Компьютер собиратеся сделать свой ход. (actionParser)");
                 
                 compInputWound = CompInputAndOutput2.getCompInputWound();
-                System.out.println("compInputWound: " + compInputWound);
+                //System.out.println("compInputWound: " + compInputWound);
                 
                 usedBattlefieldGamer = CompInputAndOutput.compMove(battlefieldGamer, usedBattlefieldGamer, compInputWound);
                 
@@ -101,34 +116,5 @@ public class ActionParser {
                 return PagesPath.GAMER_BATTLEFIELD;
         }        
         return PagesPath.ERROR;
-    }
-    
-    
-    public static String createXMLResponse (Map <String, Integer> battleField, HttpServletRequest request) {
-        
-        String s;
-        StringBuffer sb = new StringBuffer();        
-        Iterator<String> it = battleField.keySet().iterator();
-        Integer value = 0;
-        
-        while (it.hasNext()) {
-            String key = it.next();            
-            
-            if ( key.length() < 4) {
-                value = battleField.get(key);
-                //System.out.println(value + "   value");
-                
-                sb.append("<pair_key_value>");
-                sb.append("<key>" + key + "</key>");
-                sb.append("<value>" + value + "</value>");
-                sb.append("</pair_key_value>");
-            }
-        }        
-        sb.append("<battleFieldInXML>" + sb.toString() + "</battleFieldInXML>");
-        s = sb.toString();
-        
-        request.setAttribute("r", s);
-        return s;
-    }
-    
+    }    
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+import sbv30.CompInputAndOutput;
 import sbv30.GamerInputAndOutput;
 import sbv30.PreparationComputer;
 import sbv30.PreparationGamer;
@@ -35,7 +36,9 @@ public class PrintUsedBattlefieldComputer extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         String valueOfCaseGamer = null;
         boolean hit = GamerInputAndOutput.isGamerHit();
-        System.out.println(" hit in PrintUsedBattlefieldComputer" + hit);
+        boolean winner = GamerInputAndOutput.isWinner();
+        boolean alreadyShoot = GamerInputAndOutput.isAlreadyShoot();
+        //System.out.println(" winner in PrintUsedBattlefieldComputer" + winner);
         
         //System.out.println("usedBattlefieldComp  from class  PrintUsedBattlefieldComputer:    " + usedBattlefieldComp);
         
@@ -57,7 +60,14 @@ public class PrintUsedBattlefieldComputer extends SimpleTagSupport {
         }
         jspOut.println("</div>");
         
-        jspOut.println("<table>");
+        if (winner) {
+            jspOut.println("<table id = \"gamerWin\">");
+        } else if (alreadyShoot){
+            jspOut.println("<table id = \"alreadyShoot\">");
+        } else {
+            jspOut.println("<table>");
+        }
+        
         jspOut.println("<tr>");
         jspOut.println("<th></th>");
         jspOut.println("<th>A</th>");
@@ -76,11 +86,11 @@ public class PrintUsedBattlefieldComputer extends SimpleTagSupport {
                 for (int j = 65; j <= 74; j++) {
                     valueOfCaseGamer = Character.toString((char) j) + i;
                     if (usedBattlefieldComp.get(valueOfCaseGamer) > 100) {
-                        jspOut.println("<td class = \"yesShip\" id =" + valueOfCaseGamer + "></td>");
+                        jspOut.println("<td class = \"yesShip\" id =" + valueOfCaseGamer + "><img src=\"images/cross_15x15.png\"></td>");
                     } else if (usedBattlefieldComp.get(valueOfCaseGamer) < 50 & usedBattlefieldComp.get(valueOfCaseGamer) > 10 ) {
-                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "></td>");
+                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "><img src=\"images/point_7x7.png\"></td>");
                     } else if (usedBattlefieldComp.get(valueOfCaseGamer) == 1) {
-                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "></td>");
+                        jspOut.println("<td class = \"yesLimit\" id =" + valueOfCaseGamer + "><img src=\"images/point_7x7.png\"></td>");
                     } else if (usedBattlefieldComp.get(valueOfCaseGamer) == 0) {
                         jspOut.println("<td id =" + valueOfCaseGamer + "></td>");
                     }

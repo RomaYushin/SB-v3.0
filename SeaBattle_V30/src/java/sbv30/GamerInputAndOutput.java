@@ -97,14 +97,32 @@ public class GamerInputAndOutput {
      * true - попал, что означает продолжение стрельбы игроком
      */
     private static boolean gamerHit;
+    
+    private static boolean winner;
+    
+    private static boolean alreadyShoot;
 
     public static boolean isGamerHit() {
         return gamerHit;
     }
 
+    public static boolean isWinner() {
+        return winner;
+    }
+
+    public static boolean isAlreadyShoot() {
+        return alreadyShoot;
+    }   
+
     public static void setGamerHit(boolean gamerHit) {
         GamerInputAndOutput.gamerHit = gamerHit;
     }
+
+    public static void setWinner(boolean winner) {
+        GamerInputAndOutput.winner = winner;
+    }
+    
+     
     
     
     
@@ -131,6 +149,15 @@ public class GamerInputAndOutput {
     public static Map<String, Integer> gamerMove(String id, Map<String, Integer> battlefieldComp, Map<String, Integer> usedBattlefieldComp) {
 
         counter++;
+        alreadyShoot = false;
+        
+        // проверяем, стрелял ли уже игрок по координате id
+        if (usedBattlefieldComp.get(id) > 0) {
+            System.out.println("РОМАН, ты уже стрелял по координате " + id);
+            gamerHit = true;
+            alreadyShoot = true;
+            return usedBattlefieldComp;
+        }
 
         // заносим в переменную valueOfBattlefieldComp значение value по введенной игроком координате (key)
         valueOfBattlefieldComp = (int) battlefieldComp.get(id);
@@ -380,7 +407,7 @@ public class GamerInputAndOutput {
                     limitCoordDeck4 = deck4.genLimitCoordDeck4(battlefieldComp);
 
                     // добавляем границы корабля в массив usedBattlefieldComp
-                    usedBattlefieldComp = addLimits(usedBattlefieldComp, limitCoordDeck3, 45);
+                    usedBattlefieldComp = addLimits(usedBattlefieldComp, limitCoordDeck4, 45);
                     
                     /*for (char i = 65; i < 75; i++) {
                         for (int j = 1; j <= 10; j++) {
@@ -471,9 +498,10 @@ public class GamerInputAndOutput {
                 && usedBattlefieldComp.containsValue(453)
                 && usedBattlefieldComp.containsValue(454)) {
             System.out.println("Игра закончена!");
+            winner = true;
             // код 2 - окончание игры
-            usedBattlefieldComp.put("A1", 2);
-            usedBattlefieldComp.put("A2", counter);
+            //usedBattlefieldComp.put("A1", 2);
+            //usedBattlefieldComp.put("A2", counter);
         }
         return usedBattlefieldComp;
     }

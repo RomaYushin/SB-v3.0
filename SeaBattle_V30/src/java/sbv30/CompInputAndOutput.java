@@ -78,11 +78,21 @@ public class CompInputAndOutput {
      * номер однопалубного корабля. Т.к. однопалубных кораблей - четыре.
      */
     static private int serialNumberOfDeck1;
-    
+
     static boolean compHit;
+    
+    private static boolean winner;
+
+    public static boolean isWinner() {
+        return winner;
+    }
 
     public static boolean isCompHit() {
         return compHit;
+    }
+
+    public static void setWinner(boolean winner) {
+        CompInputAndOutput.winner = winner;
     }
     
     
@@ -119,18 +129,19 @@ public class CompInputAndOutput {
         // compInputWound.size() == 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         if (compInputWound.size() == 0) {
             Ships ships = new Ships();
+            try {
+                System.out.println("Компьютер думает...");
+                Thread.sleep(2000); // Задержка в 2.0 сек для имитации обдумывания компьютером следубщего хода
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
             while (true) {
-                try {
-                    System.out.println("Компьютер думает...");
-                    Thread.sleep(1500); // Задержка в 1.5 сек для имитации обдумывания компьютером следубщего хода
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
                 randomCompCoord = Character.toString((char) ships.mFirstRandomNumberForLetter()) + ships.mFirstRandomNumberForNumber();
-                if (usedBattlefieldGamer.get(randomCompCoord)== 0 ) {
+                if (usedBattlefieldGamer.get(randomCompCoord) == 0) {
                     break;
                 } else {
-                    System.out.println("Компьютер уже стреляли по этой координате!\n");                    
+                    System.out.println("Компьютер уже стреляли по этой координате!\n");
                 }
             }
 
@@ -181,7 +192,7 @@ public class CompInputAndOutput {
                             break;
                     }
                     usedBattlefieldGamer = compDeck1SinkOrWound(usedBattlefieldGamer, battlefieldGamer, limitDeck1, serialNumberOfDeck1);
-                    usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    //usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
                     usedBattlefieldGamer = getWinner(usedBattlefieldGamer);
                     compHit = true;
                     return usedBattlefieldGamer;
@@ -211,8 +222,9 @@ public class CompInputAndOutput {
                     }
                     compInputWound.add(0, randomCompCoord);
                     CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(randomCompCoord, compInputWound, battlefieldGamer, usedBattlefieldGamer));
-                    compHit = true; 
-                    usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    System.out.println("Перед return usedBattlefieldGamer");
+                    compHit = true;
+                    //usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
                     return usedBattlefieldGamer;
                 case 311:
                 case 312:
@@ -236,8 +248,9 @@ public class CompInputAndOutput {
                     }
                     compInputWound.add(0, randomCompCoord);
                     CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(randomCompCoord, compInputWound, battlefieldGamer, usedBattlefieldGamer));
-                    compHit = true;  
-                    usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    compHit = true;
+                    //usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    System.out.println("Перед return usedBattlefieldGamer");
                     return usedBattlefieldGamer;
                 case 411:
                 case 412:
@@ -248,8 +261,9 @@ public class CompInputAndOutput {
 
                     compInputWound.add(0, randomCompCoord);
                     CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(randomCompCoord, compInputWound, battlefieldGamer, usedBattlefieldGamer));
-                    compHit = true;  
-                    usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    compHit = true;
+                    //usedBattlefieldGamer.put(randomCompCoord, valueOfBattlefieldGamer);
+                    System.out.println("0000: " + usedBattlefieldGamer);
                     return usedBattlefieldGamer;
                 default:
                     System.out.println("ОШИБКА в определении значения переменной valueOfBattlefieldGamer для Gamer, compInputWound.size() == 0!!!");
@@ -283,9 +297,11 @@ public class CompInputAndOutput {
                 case 32:
                 case 41:
                     System.out.println("Компьютер, МИМО!\n");
+                    usedBattlefieldGamer.put(compInputWound.get(1), 1);
                     compHit = false;
-                    compInputWound.remove(1); 
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(0), compInputWound, battlefieldGamer, usedBattlefieldGamer));                                   
+                    compInputWound.remove(1);                    
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(0), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+  /*!*/             
                     return usedBattlefieldGamer;
                 case 211:
                 case 212:
@@ -328,7 +344,7 @@ public class CompInputAndOutput {
                                         usedBattlefieldGamer.put(s, 22);
                                     }
                                 }
-                            }    
+                            }
                             break;
                         case 231:
                         case 232:
@@ -351,8 +367,8 @@ public class CompInputAndOutput {
                             break;
                     }
                     compInputWound.clear();
-                    compHit = true;                    
-                    CompInputAndOutput2.setCompInputWound(compInputWound); 
+                    compHit = true;
+                    CompInputAndOutput2.setCompInputWound(compInputWound);
                     usedBattlefieldGamer = getWinner(usedBattlefieldGamer);
                     return usedBattlefieldGamer;
                 case 311:
@@ -375,8 +391,8 @@ public class CompInputAndOutput {
                             System.out.println("");
                             break;
                     }
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(1), compInputWound, battlefieldGamer, usedBattlefieldGamer)); 
-                    compHit = true;                 
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(1), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+                    compHit = true;
                     return usedBattlefieldGamer;
                 case 411:
                 case 412:
@@ -384,8 +400,9 @@ public class CompInputAndOutput {
                 case 414:
                     System.out.println("ПОДБИТ КОРАБЛЬ!");
                     System.out.println("");
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(0), compInputWound, battlefieldGamer, usedBattlefieldGamer)); 
-                    compHit = true;              
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(1), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+                    compHit = true;
+                    System.out.println("2222222: " + usedBattlefieldGamer);
                     return usedBattlefieldGamer;
                 default:
                     System.out.println("ОШИБКА в определении значения переменной valueOfBattlefieldGamer для Gamer, compInputWound.size() == 2!!!");
@@ -418,11 +435,13 @@ public class CompInputAndOutput {
                 case 23:
                 case 31:
                 case 32:
-                case 41:  
+                case 41:
                     System.out.println("Компьютер, МИМО!\n");
+                    usedBattlefieldGamer.put(compInputWound.get(2), 1);
                     compHit = false;
                     compInputWound.remove(2);
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(1), compInputWound, battlefieldGamer, usedBattlefieldGamer));                     
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(1), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+                    
                     return usedBattlefieldGamer;
                 case 311:
                 case 312:
@@ -474,8 +493,8 @@ public class CompInputAndOutput {
                             break;
                     }
                     compInputWound.clear();
-                    CompInputAndOutput2.setCompInputWound(compInputWound); 
-                    compHit = true;                    
+                    CompInputAndOutput2.setCompInputWound(compInputWound);
+                    compHit = true;
                     usedBattlefieldGamer = getWinner(usedBattlefieldGamer);
                     return usedBattlefieldGamer;
                 case 411:
@@ -484,9 +503,10 @@ public class CompInputAndOutput {
                 case 414:
                     System.out.println("ПОДБИТ КОРАБЛЬ!");
                     System.out.println("");
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(2), compInputWound, battlefieldGamer, usedBattlefieldGamer)); 
-                    compHit = true;       
-                    usedBattlefieldGamer.put(compInputWound.get(2), valueOfBattlefieldGamer);
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(2), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+                    compHit = true;
+                    //usedBattlefieldGamer.put(compInputWound.get(2), valueOfBattlefieldGamer);
+                    System.out.println("33333: " + usedBattlefieldGamer);
                     return usedBattlefieldGamer;
                 default:
                     System.out.println("ОШИБКА в определении значения переменной valueOfBattlefieldGamer для Gamer, compInputWound.size() == 3!!!");
@@ -521,11 +541,12 @@ public class CompInputAndOutput {
                 case 32:
                 case 41:
                     System.out.println("Компьютер, МИМО!\n" /* +  compInputWound.size() == 4*/);
+                    usedBattlefieldGamer.put(compInputWound.get(3), 1);
                     compHit = false;
                     System.out.println("");
                     compInputWound.remove(3);
-                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(2), compInputWound, battlefieldGamer, usedBattlefieldGamer)); 
-                    return usedBattlefieldGamer;                    
+                    CompInputAndOutput2.setCompInputWound(createRandomCoordForWoundShip(compInputWound.get(2), compInputWound, battlefieldGamer, usedBattlefieldGamer));
+                    return usedBattlefieldGamer;
                 case 411:
                 case 412:
                 case 413:
@@ -549,10 +570,12 @@ public class CompInputAndOutput {
                     //System.out.println(usedBattlefieldGamer.values());
                     System.out.println("");
                     compInputWound.clear();
-                    CompInputAndOutput2.setCompInputWound(compInputWound); 
-                    compHit = true;                   
+                    CompInputAndOutput2.setCompInputWound(compInputWound);
+                    compHit = true;
                     usedBattlefieldGamer = getWinner(usedBattlefieldGamer);
-                    return usedBattlefieldGamer;  
+                    
+                    System.out.println("44444444: " + usedBattlefieldGamer);
+                    return usedBattlefieldGamer;
                 default:
                     System.out.println("ОШИБКА в определении значения переменной valueOfBattlefieldGamer для Gamer, compInputWound.size() == 4!!!");
             }
@@ -620,6 +643,7 @@ public class CompInputAndOutput {
      * случайно сгенерированную координату.
      */
     public static ArrayList<String> createRandomCoordForWoundShip(String randomCompCoord, ArrayList<String> compInputWound, Map battlefieldGamer, Map usedBattlefieldGamer) {
+        System.out.println("Внутри createRandomCoordForWoundShip");
 
         /**
          * String _1successfulCoord - переменная, хранящая координату, когда в
@@ -786,10 +810,13 @@ public class CompInputAndOutput {
          * коллекцию compInputWound
          */
         String randomCoordForWoundShip = null;
+        boolean lala = true;
 
+        //System.out.println("compInputWound.size()" + compInputWound.size());
         switch (compInputWound.size()) {
             // case 1   111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
             case 1:
+                System.out.println("compInputWound.size(): " + compInputWound.size());
                 do {
                     if (randomCompCoord.equals("A10")
                             || randomCompCoord.equals("B10")
@@ -847,14 +874,15 @@ public class CompInputAndOutput {
                             randomCoordForWoundShip = _4CoordForWoundShip;
                             break;
                     }
-                    //System.out.println("Выбранная случайно одна: " + randomCoordForWoundShip);
-                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || usedBattlefieldGamer.containsKey(randomCoordForWoundShip) == true);
+                    System.out.println("Выбранная случайно одна после одного попадания: " + randomCoordForWoundShip);
+                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || (((int) usedBattlefieldGamer.get(randomCoordForWoundShip)) == 0) == false);
                 compInputWound.add(1, randomCoordForWoundShip);
                 //System.out.println(compInputWound.size() + "внутри метода генерации координат!!!");
                 break;
             // если два попадания удачны
             // case 2   22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
             case 2:
+                System.out.println("compInputWound.size(): " + compInputWound.size());
                 do {
                     _1successfulCoord = compInputWound.get(0);
                     _2successfulCoord = compInputWound.get(1);
@@ -875,7 +903,7 @@ public class CompInputAndOutput {
                             || _1successfulCoord.equals("I10")
                             || _1successfulCoord.equals("J10")) {
 
-                        letter1 = randomCompCoord.charAt(0);
+                        letter1 = _1successfulCoord.charAt(0);
                         number1 = 10;
                         /*letter1 = _1successfulCoord.charAt(0);
                         n11 = _1successfulCoord.charAt(1);
@@ -901,7 +929,7 @@ public class CompInputAndOutput {
                             || _2successfulCoord.equals("I10")
                             || _2successfulCoord.equals("J10")) {
 
-                        letter2 = randomCompCoord.charAt(0);
+                        letter2 = _2successfulCoord.charAt(0);
                         number2 = 10;
                         /*letter2 = _2successfulCoord.charAt(0);
                         n21 = _2successfulCoord.charAt(1);
@@ -972,35 +1000,41 @@ public class CompInputAndOutput {
                         //System.out.println("Ошибка в методе определения следующей координаты для двух поражений");
                     }
 
-                    //System.out.println("Выбранная случайно одна: " + randomCoordForWoundShip);
-                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || usedBattlefieldGamer.containsKey(randomCoordForWoundShip) == true);
+                    System.out.println("Выбранная случайно одна после двух попаданий: " + randomCoordForWoundShip);                    
+                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || (((int) usedBattlefieldGamer.get(randomCoordForWoundShip)) == 0) == false);
                 compInputWound.add(2, randomCoordForWoundShip);
                 break;
             //case 3   3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
             case 3:
-                /* Следующий код необходим для отладки:
+                System.out.println("compInputWound.size(): " + compInputWound.size());
+                //Следующий код необходим для отладки:
                 System.out.println("До сортировки координат");
+                System.out.println(compInputWound.get(0) + " " + compInputWound.get(1) + " " + compInputWound.get(2));
+                /*
                 _1successfulCoord = compInputWound.get(0);
                 _2successfulCoord = compInputWound.get(1);
                 _3successfulCoord = compInputWound.get(2);
+                */
 
                 //Сортировка по возростанию входных координат
                 Collections.sort(compInputWound);
 
-                //System.out.println("После сортировки координат");
+                System.out.println("После сортировки координат");
+                System.out.println(compInputWound.get(0) + " " + compInputWound.get(1) + " " + compInputWound.get(2));
+                
                 _1successfulCoord = compInputWound.get(0);
                 _2successfulCoord = compInputWound.get(1);
-                _3successfulCoord = compInputWound.get(2);*/
-                Collections.sort(compInputWound);
+                _3successfulCoord = compInputWound.get(2);
+                
                 do {
                     _1successfulCoord = compInputWound.get(0);
                     _3successfulCoord = compInputWound.get(2);
 
-                    /* Следующий код необходим для отладки:
+                    //Следующий код необходим для отладки:
                     System.out.println("Входные координаты для случая, когда корабль подбит трижды");
                     System.out.println(_1successfulCoord);
                     System.out.println(_2successfulCoord);
-                    System.out.println(_3successfulCoord);*/
+                    System.out.println(_3successfulCoord);
                     //раскладывание первой координаты
                     if (_1successfulCoord.equals("A10")
                             || _1successfulCoord.equals("B10")
@@ -1014,10 +1048,10 @@ public class CompInputAndOutput {
                             || _1successfulCoord.equals("I10")
                             || _1successfulCoord.equals("J10")) {
 
-                        letter1 = randomCompCoord.charAt(0);
+                        letter1 = _1successfulCoord.charAt(0);
                         number1 = 10;
-                        /*letter1 = _1successfulCoord.charAt(0);
-                        n11 = _1successfulCoord.charAt(1);
+                        //letter1 = _1successfulCoord.charAt(0);
+                        /*n11 = _1successfulCoord.charAt(1);
                         n12 = _1successfulCoord.charAt(2);
                         n13 = (char) (n11 + n12);
                         number1 = Character.getNumericValue(n13);*/
@@ -1040,7 +1074,7 @@ public class CompInputAndOutput {
                             || _3successfulCoord.equals("I10")
                             || _3successfulCoord.equals("J10")) {
 
-                        letter3 = randomCompCoord.charAt(0);
+                        letter3 = _3successfulCoord.charAt(0);
                         number3 = 10;
                         /*letter3 = _3successfulCoord.charAt(0);
                         n31 = _3successfulCoord.charAt(1);
@@ -1059,19 +1093,20 @@ public class CompInputAndOutput {
                      */
                     if (letter1 == letter3) {
                         if (number1 < number3) {
-                            previousNumber1 = number1 - 2;
+                            previousNumber1 = number1 - 1;// !!!!!!!!!!!!!!!!!!!!!!!!!! -2
                             nextNumber1 = number3 + 1;
-                        } else if (number1 > number3) {
-                            previousNumber1 = number3 - 1;
-                            nextNumber1 = number1 + 2;
                         }
+                        /*else if (number1 > number3) {
+                            previousNumber1 = number3 - 1;
+                            nextNumber1 = number1 + 1; // !!!!!!!!!!!!!!!!!!!!!!!!!! +2
+                        }*/
 
                         _1CoordForWoundShip = Character.toString((char) letter1) + Integer.toString(previousNumber1);
                         _2CoordForWoundShip = Character.toString((char) letter1) + Integer.toString(nextNumber1);
 
-                        /*System.out.println("Две новых координаты ( если уже подбито две): ");
+                        System.out.println("Две новых координаты ( если уже подбито две): ");
                         System.out.println(_1CoordForWoundShip);
-                        System.out.println(_2CoordForWoundShip);*/
+                        System.out.println(_2CoordForWoundShip);
                         randomN = (int) (Math.random() * 2 + 1);
 
                         switch (randomN) {
@@ -1084,19 +1119,20 @@ public class CompInputAndOutput {
                         }
                     } else if (number1 == number3) {
                         if (letter1 < letter3) {
-                            previousLetter1 = letter1 - 2;
+                            previousLetter1 = letter1 - 1;
                             nextLetter1 = letter3 + 1;
-                        } else if (letter1 > letter3) {
-                            previousLetter1 = letter3 - 1;
-                            nextLetter1 = letter1 + 2;
                         }
+                        /*else if (letter1 > letter3) {
+                            previousLetter1 = letter3 - 1;
+                            nextLetter1 = letter1 + 1;
+                        }*/
 
                         _1CoordForWoundShip = Character.toString((char) previousLetter1) + Integer.toString(number1);
                         _2CoordForWoundShip = Character.toString((char) nextLetter1) + Integer.toString(number1);
 
-                        /*System.out.println("Две новых координаты ( если уже подбито две): ");
+                        System.out.println("Две новых координаты ( если уже подбито две): ");
                         System.out.println(_1CoordForWoundShip);
-                        System.out.println(_2CoordForWoundShip);*/
+                        System.out.println(_2CoordForWoundShip);
                         randomN = (int) (Math.random() * 2 + 1);
 
                         switch (randomN) {
@@ -1110,9 +1146,9 @@ public class CompInputAndOutput {
                     } else {
                         //System.out.println("Ошибка в методе определения следующей координаты для двух поражений");
                     }
-                    //System.out.println("Выбранная случайно одна: " + randomCoordForWoundShip);
+                    System.out.println("Выбранная случайно одна после трех попаданий: " + randomCoordForWoundShip);
 
-                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || usedBattlefieldGamer.containsKey(randomCoordForWoundShip) == true);
+                } while (battlefieldGamer.containsKey(randomCoordForWoundShip) == false || (((int) usedBattlefieldGamer.get(randomCoordForWoundShip)) == 0) == false);
                 compInputWound.add(3, randomCoordForWoundShip);
                 break;
         }
@@ -1120,7 +1156,8 @@ public class CompInputAndOutput {
     }
 
     private static Map<String, Integer> getWinner(Map<String, Integer> usedBattlefieldGamer) {
-
+        System.out.println("Внутри getWinner для CompInputAndOutput");
+        System.out.println(usedBattlefieldGamer);
         // проверка, победил ли компьютер или нет
         if (usedBattlefieldGamer.containsValue(111)
                 && usedBattlefieldGamer.containsValue(121)
@@ -1145,6 +1182,7 @@ public class CompInputAndOutput {
 
             System.out.println("Игра закончена!");
             System.out.println("ПОБЕДИЛ КОМПЬЮТЕР!!!");
+            winner = true;
         }
         return usedBattlefieldGamer;
     }
